@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Monk Mode",
+    "icon": "./src/assets/images/icon.png",
+    "slug": "monk-mode-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.iyls.monkmodeapp"
+    },
+    "android": {
+      "package": "com.iyls.monkmodeapp",
+      "versionCode": 4
+    },
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "f731d19f-b9d6-4afa-98b1-37d206ff46e3"
+      }
+    },
+    "owner": "iyl-studio"
+  }
+}

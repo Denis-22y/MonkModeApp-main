@@ -14,10 +14,10 @@ import PeriodManager from '../scripts/managers/PeriodManager';
 import NonNegotiablesManager from '../scripts/managers/NonNegotiablesManager';
 import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 import NotificationsPlanner from '../scripts/assistive/NotificationsPlanner';
-import Animated from 'react-native-reanimated';
+import Animated, { Layout } from 'react-native-reanimated';
 
 function Main(props) {    
-    const navigation = useNavigation();        
+    const navigation = useNavigation();       
 
     //#region Rerender when the screen becomes active    
         const useForceRerendering = () => {
@@ -65,11 +65,14 @@ function Main(props) {
                         }                        
                         <DiaryCard />
                         <PlanningCard />
-                        <Pressable className="mt-5" hitSlop={30} onPress={() => navigation.navigate('Support')}>
-                             <View>
-                                <Animated.Text className="text-grayTextButton dark:text-grayTextButtonDRK font-medium text-lg text-center" >Support the team</Animated.Text>            
-                            </View>            
-                        </Pressable>
+                        
+                        <Animated.View className="mt-5" layout={Layout}>
+                            <Pressable hitSlop={30} onPress={() => navigation.navigate('Support')}>
+                                <View>
+                                    <Animated.Text className="text-grayTextButton dark:text-grayTextButtonDRK font-medium text-lg text-center" >Support the team</Animated.Text>            
+                                </View>            
+                            </Pressable>
+                        </Animated.View>
                         <View className="h-32"/>
                 </ScrollView>
             </View>

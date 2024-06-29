@@ -15,6 +15,8 @@ import BackButtonHandler from '../scripts/assistive/BackButtonHandler';
 import PlanningManager from '../scripts/managers/PlanningManager';
 import { observer } from 'mobx-react-lite';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import NotificationsPlanner from '../scripts/assistive/NotificationsPlanner';
+import { customEvent } from 'vexo-analytics';
 
 const Planning = observer(({ route }) => {
     const navigation = useNavigation();
@@ -26,7 +28,7 @@ const Planning = observer(({ route }) => {
         PlanningManager.setIsTomorrow(isTommorow);
 
         navigation.addListener('blur', () => {
-            //NotificationsPlanner.planTaskNotifications(PlanningManager.tasksList, 120); // Notifications for planned tasks
+            NotificationsPlanner.planTaskNotifications(PlanningManager.tasksList, 120); // Notifications for planned tasks
             PlanningManager.saveTasksList();
             PlanningManager.resetTempValues();
         });
@@ -35,10 +37,12 @@ const Planning = observer(({ route }) => {
     useEffect(() => { //Subscribe on ABB               
         navigation.addListener('focus', () => {
             BackButtonHandler.handleAndroidBackButton(() => {
-                if(Keyboard.isVisible() === false)
-                    navigation.goBack();
-                else
+                if(Keyboard.isVisible() === false){
+                    handleFinishButton();
+                }
+                else {
                     Keyboard.dismiss();
+                }
             })
         })
 
@@ -94,7 +98,12 @@ const Planning = observer(({ route }) => {
     }
 
     function handleFinishButton(){    
-        navigation.goBack();
+        if(!__DEV__)
+            customEvent('Planning Entry', {
+                Tasks: PlanningManager.tasksListSortedByTime
+            });
+
+        navigation.navigate('Main');
     }
 
     return (

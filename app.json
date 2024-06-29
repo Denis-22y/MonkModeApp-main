@@ -18,7 +18,7 @@
     },
     "android": {
       "package": "com.iyls.monkmodeapp",
-      "versionCode": 4
+      "versionCode": 9
     },
     "web": {},
     "extra": {

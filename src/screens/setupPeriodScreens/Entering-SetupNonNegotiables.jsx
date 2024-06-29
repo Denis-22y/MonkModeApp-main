@@ -11,6 +11,7 @@ import SetupPeriodStore from '../../scripts/managers/SetupPeriodStore';
 import BackButtonHandler from '../../scripts/assistive/BackButtonHandler';
 import { useEffect } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { customEvent } from 'vexo-analytics';
 
 const EnteringSetupNonNegotiables = observer((props) => {
     const navigation = useNavigation();
@@ -41,6 +42,14 @@ const EnteringSetupNonNegotiables = observer((props) => {
     const handleContinueButton = () => {                              
         SetupPeriodStore.launchMonkModePeriod();
 
+        if(!__DEV__)
+            customEvent('Period Created', {
+                Goal: SetupPeriodStore.preferences.goal,
+                EndDate: new Date(SetupPeriodStore.preferences.endTime),
+                SelectedLength: SetupPeriodStore.selectedLengthId,
+                NonNegotiables: SetupPeriodStore.nonNegotiables
+            });
+        
         navigation.navigate('Loading');
     }
 

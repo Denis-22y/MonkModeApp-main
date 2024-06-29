@@ -1,4 +1,4 @@
-import {BackHandler} from 'react-native';
+import {Alert, BackHandler} from 'react-native';
 
 class BackButtonHandler{
   backHandlerEvent = null;

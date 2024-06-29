@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import BackButtonHandler from '../scripts/assistive/BackButtonHandler';
 import DiaryManager from '../scripts/managers/DiaryManager';
 import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
+import { customEvent } from 'vexo-analytics';
 
 function Diary( {route} ) {    
     const navigation = useNavigation();     
@@ -24,10 +25,12 @@ function Diary( {route} ) {
     useEffect(() => { //Subscribe on ABB               
         navigation.addListener('focus', () => {            
             BackButtonHandler.handleAndroidBackButton(() => { 
-                if(Keyboard.isVisible() === false)
-                    navigation.goBack();
-                else
+                if(Keyboard.isVisible() === false){
+                    handleBlueButton();
+                }
+                else {
                     Keyboard.dismiss();
+                }
             })
         })
         
@@ -59,7 +62,13 @@ function Diary( {route} ) {
     }    
 
     function handleBlueButton(){
-        navigation.goBack();
+        if(!__DEV__)
+            customEvent('Diary Entry', {
+                Morning: DiaryManager.presentDayData.themes[0],
+                Evening: DiaryManager.presentDayData.themes[1]
+            });
+
+        navigation.navigate('Main');
     }
 
     return (

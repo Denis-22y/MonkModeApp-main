@@ -23,23 +23,23 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ navigationBarColor: colorScheme === 'dark' ? '#1C1C1E' : '#FFFFFF' }}>  
-        
+        <Stack.Navigator screenOptions={{ navigationBarColor: colorScheme === 'dark' ? '#1C1C1E' : '#FFFFFF' }}>  
+          <Stack.Screen name="Loading" component={Loading} options={{headerShown: false, animation: 'fade', gestureEnabled: false}} />
 
-        <Stack.Screen name="Loading" component={Loading} options={{headerShown: false, animation: 'fade', gestureEnabled: false}} />
+          <Stack.Screen name="Main" component={Main} options={{headerShown: false, animation: 'fade', gestureEnabled: false}}/>
+          <Stack.Screen name="Support" component={Support} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
+          <Stack.Screen name="Focus" component={Focus} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
+          <Stack.Screen name="Diary" component={Diary} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
+          <Stack.Screen name="Planning" component={Planning} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
 
-        <Stack.Screen name="Main" component={Main} options={{headerShown: false, animation: 'fade', gestureEnabled: false}}/>
-        <Stack.Screen name="Support" component={Support} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
-        <Stack.Screen name="Focus" component={Focus} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
-        <Stack.Screen name="Diary" component={Diary} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
-        <Stack.Screen name="Planning" component={Planning} options={{headerShown: false, animation: 'slide_from_bottom'}}/>
-
-        <Stack.Screen name="Entering-Description" component={EnteringDescription} options={{headerShown: false, animation: 'fade', gestureEnabled: false}}/>                   
-        <Stack.Screen name="Entering-Preparation" component={EnteringPreparation} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
-        <Stack.Screen name="Entering-SetupGoal" component={EnteringSetupGoal} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
-        <Stack.Screen name="Entering-SetupLength" component={EnteringSetupLength} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
-        <Stack.Screen name="Entering-SetupNonNegotiables" component={EnteringSetupNonNegotiables} options={{headerShown: false, animation: 'slide_from_right'}}/>        
-      </Stack.Navigator>
+          <Stack.Screen name="Entering-Description" component={EnteringDescription} options={{headerShown: false, animation: 'fade', gestureEnabled: false}}/>                   
+          <Stack.Screen name="Entering-Preparation" component={EnteringPreparation} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
+          <Stack.Screen name="Entering-SetupGoal" component={EnteringSetupGoal} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
+          <Stack.Screen name="Entering-SetupLength" component={EnteringSetupLength} options={{headerShown: false, animation: 'slide_from_right'}}/>                 
+          <Stack.Screen name="Entering-SetupNonNegotiables" component={EnteringSetupNonNegotiables} options={{headerShown: false, animation: 'slide_from_right'}}/>        
+        </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+//eas build -p android --profile preview

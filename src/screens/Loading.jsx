@@ -15,7 +15,7 @@ import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 function Loading(props) {
     const navigation = useNavigation();   
     const [showWarning, setShowWarning] = useState(false); 
-    
+
     useEffect(() => { //Subscribe on ABB               
         navigation.addListener('focus', () => {
             BackButtonHandler.handleAndroidBackButton(() => { 
@@ -85,11 +85,11 @@ function Loading(props) {
                     if(new Date().getTime() <= PeriodManager.endTime){
                         PeriodManager.setIsValid(false);                          
                     }
-                    
+
                     navigation.navigate('Main');
                 }, 
                 err => {
-                    //console.log(Platform.OS + ' - An error occurated with the PeriodPreferences.json: ' + err);
+                    //console.log(Platform.OS + ' - An error occured with the PeriodPreferences.json: ' + err);
                     navigation.navigate('Entering-Description');
                 }));
 
@@ -100,7 +100,7 @@ function Loading(props) {
 
         navigation.addListener('blur', () => {clearTimeout(timeoutId)});
     }, []);
-    
+
     return (
         <View className="w-screen h-screen bg-background dark:bg-backgroundDRK" accessibilityLabel='Loading'>
             <ExpoStatusBar style='auto' translucent/>

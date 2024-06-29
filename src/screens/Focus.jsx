@@ -35,8 +35,8 @@ const Focus = observer(( {route} ) => {
     useEffect(() => { //Subscribe on ABB               
         navigation.addListener('focus', () => {
             BackButtonHandler.handleAndroidBackButton(() => { 
-                navigation.goBack();
-            })
+                navigation.navigate('Main');
+            });
         })
         
         navigation.addListener('blur', BackButtonHandler.removeAndroidBackButtonHandler);
@@ -114,12 +114,12 @@ const Focus = observer(( {route} ) => {
     }
 
     function handleBackButton(){               
-        navigation.goBack();
+        navigation.navigate('Main');
     }        
     
     function handleFinishButton(){        
         PlanningManager.deleteTask(taskData.id);
-        navigation.goBack();
+        navigation.navigate('Main');
     }        
 
     return (
